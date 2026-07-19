@@ -76,69 +76,8 @@ button, input, textarea {
 }
 
 /* ==========================================================================
-   FLOATING CUSTOMIZER BUTTON & MODAL
+   CUSTOMIZER MODAL OVERLAY
    ========================================================================== */
-.floating-actions-container {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1500;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.floating-social-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: rgba(11, 16, 32, 0.85);
-    border: 1px solid rgba(0, 255, 204, 0.3);
-    color: var(--accent-turquoise);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: var(--transition-standard);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-}
-
-.floating-social-btn:hover {
-    transform: translateY(-4px) scale(1.05);
-}
-
-.floating-social-btn:nth-of-type(1):hover {
-    color: #0077b5;
-    border-color: #0077b5;
-    box-shadow: 0 0 15px rgba(0, 119, 181, 0.4), 0 8px 30px rgba(0, 0, 0, 0.6);
-}
-
-.floating-social-btn:nth-of-type(2):hover {
-    color: var(--accent-blue);
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 15px rgba(125, 249, 255, 0.4), 0 8px 30px rgba(0, 0, 0, 0.6);
-}
-
-.customizer-toggle {
-    background: rgba(11, 16, 32, 0.85);
-    border: 1px solid var(--accent-turquoise);
-    color: var(--accent-turquoise);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.25), 0 8px 30px rgba(0, 0, 0, 0.5);
-    padding: 0.8rem 1.4rem;
-    border-radius: 99px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    transition: var(--transition-standard);
-    will-change: transform, box-shadow;
-}
 
 .customizer-toggle svg {
     animation: rotateGear 10s linear infinite;
@@ -2037,7 +1976,35 @@ p {
 
 .footer-socials {
     display: flex;
+    align-items: center;
     gap: 1.5rem;
+}
+
+.customizer-toggle-static {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    color: var(--accent-turquoise);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: var(--transition-medium);
+}
+
+.customizer-toggle-static:hover {
+    background: var(--accent-turquoise);
+    color: var(--bg-primary);
+    box-shadow: 0 0 12px rgba(0, 255, 204, 0.4);
+    transform: translateY(-2px);
+}
+
+.customizer-toggle-static svg {
+    animation: rotateGear 10s linear infinite;
+    transform-origin: 50% 50%;
 }
 
 .footer-socials a {
