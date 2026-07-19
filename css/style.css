@@ -76,37 +76,8 @@ button, input, textarea {
 }
 
 /* ==========================================================================
-   FLOATING CUSTOMIZER BUTTON & MODAL
+   CUSTOMIZER MODAL OVERLAY
    ========================================================================== */
-.customizer-toggle {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1500;
-    background: rgba(11, 16, 32, 0.85);
-    border: 1px solid var(--accent-turquoise);
-    color: var(--accent-turquoise);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.25), 0 8px 30px rgba(0, 0, 0, 0.5);
-    padding: 0.8rem 1.4rem;
-    border-radius: 99px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    transition: var(--transition-standard);
-    will-change: transform, box-shadow;
-}
-
-.customizer-toggle:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 0 25px rgba(0, 255, 204, 0.5), 0 12px 35px rgba(0, 0, 0, 0.6);
-    background-color: var(--accent-turquoise);
-    color: var(--bg-primary);
-}
 
 .customizer-toggle svg {
     animation: rotateGear 10s linear infinite;
@@ -2005,7 +1976,35 @@ p {
 
 .footer-socials {
     display: flex;
+    align-items: center;
     gap: 1.5rem;
+}
+
+.customizer-toggle-static {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    color: var(--accent-turquoise);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: var(--transition-medium);
+}
+
+.customizer-toggle-static:hover {
+    background: var(--accent-turquoise);
+    color: var(--bg-primary);
+    box-shadow: 0 0 12px rgba(0, 255, 204, 0.4);
+    transform: translateY(-2px);
+}
+
+.customizer-toggle-static svg {
+    animation: rotateGear 10s linear infinite;
+    transform-origin: 50% 50%;
 }
 
 .footer-socials a {
