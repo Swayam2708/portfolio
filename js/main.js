@@ -225,7 +225,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const card = document.createElement('div');
             card.className = 'project-card';
+            
+            const bgHTML = proj.bgImage && proj.bgImage !== '#' && proj.bgImage !== '' ? `
+                <div class="project-card-bg" style="background-image: url('${proj.bgImage}');"></div>
+            ` : '';
+            
             card.innerHTML = `
+                ${bgHTML}
                 <div class="project-header">
                     <h3 class="project-card-title">${proj.title}</h3>
                     <div class="project-links">${linksHTML}</div>
@@ -289,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const editProjStack = document.getElementById('editProjStack');
     const editProjGithub = document.getElementById('editProjGithub');
     const editProjLive = document.getElementById('editProjLive');
+    const editProjImage = document.getElementById('editProjImage');
 
     const openProjectEditor = (index = -1) => {
         if (!projectEditModal) return;
@@ -303,6 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
             editProjStack.value = p.techStack.join(', ');
             editProjGithub.value = p.githubLink;
             editProjLive.value = p.liveLink;
+            editProjImage.value = p.bgImage || '';
         } else {
             // Add new
             projectModalTitle.textContent = "Create New Project";
@@ -312,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
             editProjStack.value = '';
             editProjGithub.value = '';
             editProjLive.value = '#';
+            editProjImage.value = '';
         }
         
         projectEditModal.classList.add('open');
@@ -342,8 +351,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const techStack = editProjStack.value.split(',').map(s => s.trim()).filter(s => s.length > 0);
             const githubLink = editProjGithub.value.trim();
             const liveLink = editProjLive.value.trim();
+            const bgImage = editProjImage.value.trim();
 
-            const projectObj = { title, description, techStack, githubLink, liveLink };
+            const projectObj = { title, description, techStack, githubLink, liveLink, bgImage };
 
             if (index >= 0) {
                 // Update

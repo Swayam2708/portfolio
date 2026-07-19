@@ -1319,6 +1319,25 @@ p {
     }
 }
 
+.project-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-standard), transform var(--transition-standard);
+}
+
+.project-card:hover .project-card-bg {
+    opacity: 0.18;
+    transform: scale(1.06);
+}
+
 /* Interactive Cursor Radial Gradient Glow */
 .project-card::before {
     content: '';
