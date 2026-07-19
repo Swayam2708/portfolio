@@ -129,8 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminModeCheckbox = document.getElementById('adminModeCheckbox');
     const addProjectBtn = document.getElementById('addProjectBtn');
 
-    // Secure default password (github username Swayam2708, case-insensitive)
-    const SECRET_KEY = 'swayam2708';
+    // Secure default password (swayam@123, case-insensitive)
+    const SECRET_KEY = 'swayam@123';
 
     const checkAdminSession = () => {
         if (sessionStorage.getItem('swayam_admin_unlocked') === 'true') {
