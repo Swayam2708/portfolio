@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Swayam Omar - B.Tech CSE Student, Web Developer, and Freelancer. Cyberpunk, premium, responsive Gen Z design showcasing MERN stack skills and web projects.">
+    <title>Swayam Omar | Portfolio | Web Developer & CSE Student</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Floating Customizer Toggle -->
+    <button class="customizer-toggle" id="customizerToggle" aria-label="Open Customizer Menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        <span>Admin Panel</span>
+    </button>
+
+    <!-- Glassmorphic Customizer Modal Overlay -->
+    <div class="customizer-modal-overlay" id="customizerModal">
+        <div class="customizer-modal">
+            <button class="customizer-close" id="customizerClose" aria-label="Close Customizer">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <h3 class="customizer-title">Control Hub</h3>
+            
+            <!-- Auth Screen (Password Protection) -->
+            <div id="customizerAuthScreen">
+                <p class="customizer-subtitle">Enter password to unlock visual content editors and project creators directly on this website.</p>
+                <form id="adminLoginForm" class="contact-form" style="gap: 1rem;">
+                    <div class="form-group">
+                        <label for="adminPasswordInput">Security Key</label>
+                        <input type="password" id="adminPasswordInput" placeholder="Password is your github username..." required autocomplete="current-password">
+                        <p id="authErrorMsg" style="color: var(--accent-red); font-size: 0.85rem; margin-top: 0.5rem; display: none;">❌ Incorrect security password. Please try again.</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">Unlock Panel</button>
+                </form>
+            </div>
+
+            <!-- Control Screen (Post-Authentication) -->
+            <div id="customizerControlScreen" style="display: none;">
+                <p class="customizer-subtitle">Welcome Swayam. Enable Visual Admin Mode to add, edit, or delete items directly on the page layout.</p>
+                
+                <!-- Visual Editor Toggle Switch -->
+                <div class="admin-control-row">
+                    <span style="font-weight:600;">Enable Visual Admin Mode</span>
+                    <label class="switch-toggle">
+                        <input type="checkbox" id="adminModeCheckbox">
+                        <span class="slider-toggle"></span>
+                    </label>
+                </div>
+
+                <!-- Export & Reset actions -->
+                <div class="admin-actions-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                    <button class="btn btn-submit" id="exportConfigBtn" style="padding: 0.7rem; font-size: 0.85rem; border-radius: 0.8rem;">Export projects.js</button>
+                    <button class="btn btn-secondary" id="resetProjectsBtn" style="padding: 0.7rem; font-size: 0.85rem; border-radius: 0.8rem;">Reset to Default</button>
+                </div>
+
+                <!-- File Links (For local editor opening) -->
+                <div class="customizer-links">
+                    <a href="file:///C:/Users/prate/.gemini/antigravity/scratch/personal-portfolio/js/projects.js" class="customizer-link-card" target="_blank">
+                        <div class="link-card-icon">📁</div>
+                        <div class="link-card-body">
+                            <h4>Edit Projects Data</h4>
+                            <span>js/projects.js</span>
+                        </div>
+                    </a>
+                    <a href="file:///C:/Users/prate/.gemini/antigravity/scratch/personal-portfolio/index.html" class="customizer-link-card" target="_blank">
+                        <div class="link-card-icon">🌐</div>
+                        <div class="link-card-body">
+                            <h4>Edit Structure</h4>
+                            <span>index.html</span>
+                        </div>
+                    </a>
+                    <a href="file:///C:/Users/prate/.gemini/antigravity/scratch/personal-portfolio/css/style.css" class="customizer-link-card" target="_blank">
+                        <div class="link-card-icon">🎨</div>
+                        <div class="link-card-body">
+                            <h4>Edit Style CSS</h4>
+                            <span>css/style.css</span>
+                        </div>
+                    </a>
+                    <a href="file:///C:/Users/prate/.gemini/antigravity/scratch/personal-portfolio/assets/profile.jpg" class="customizer-link-card" target="_blank">
+                        <div class="link-card-icon">🖼️</div>
+                        <div class="link-card-body">
+                            <h4>Open Profile Photo</h4>
+                            <span>assets/profile.jpg</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Editor Modal Dialog -->
+    <div class="customizer-modal-overlay" id="projectEditModal" style="z-index: 2200;">
+        <div class="customizer-modal" style="max-width: 500px;">
+            <button class="customizer-close" id="projectEditClose" aria-label="Close Project Editor">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <h3 class="customizer-title" id="projectModalTitle">Modify Project</h3>
+            <p class="customizer-subtitle" id="projectModalSubtitle">Save changes to write them into temporary local storage.</p>
+            
+            <form id="projectEditForm" class="contact-form" style="gap: 1rem; margin-top: 1rem;">
+                <input type="hidden" id="editProjIndex">
+                <div class="form-group">
+                    <label for="editProjTitle">Project Name</label>
+                    <input type="text" id="editProjTitle" required placeholder="e.g. My Portfolio Platform">
+                </div>
+                <div class="form-group">
+                    <label for="editProjDesc">Description</label>
+                    <textarea id="editProjDesc" rows="3" required placeholder="Describe your project highlights..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editProjStack">Technologies (comma-separated)</label>
+                    <input type="text" id="editProjStack" placeholder="React, Node.js, MongoDB" required>
+                </div>
+                <div class="form-group">
+                    <label for="editProjGithub">GitHub Link</label>
+                    <input type="url" id="editProjGithub" required placeholder="https://github.com/Swayam2708/repo">
+                </div>
+                <div class="form-group">
+                    <label for="editProjLive">Live Site URL (use '#' if none)</label>
+                    <input type="text" id="editProjLive" required placeholder="https://live-site.com">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; padding:0.9rem; margin-top:0.5rem;">Save Project</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Export Code Dialog Overlay -->
+    <div class="customizer-modal-overlay" id="exportModal" style="z-index: 2300;">
+        <div class="customizer-modal" style="max-width: 550px;">
+            <button class="customizer-close" id="exportClose" aria-label="Close Export">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <h3 class="customizer-title">Export projects.js</h3>
+            <p class="customizer-subtitle">Copy the code block below and replace the entire content of <code>js/projects.js</code> to save your projects permanently before pushing to GitHub/Vercel.</p>
+            <textarea id="exportTextarea" rows="12" readonly style="width: 100%; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border-input); border-radius: 0.8rem; padding: 1rem; color: var(--accent-turquoise); font-family: monospace; font-size: 0.85rem; resize: none; margin-bottom: 1.5rem;"></textarea>
+            <button class="btn btn-primary" id="copyExportBtn" style="width: 100%; padding: 0.9rem;">Copy Code to Clipboard</button>
+        </div>
+    </div>
+
+    <!-- Sticky Navbar -->
+    <header class="navbar-wrapper">
+        <div class="navbar-container">
+            <a href="#" class="nav-logo">
+                SWAYAM<span class="dot-accent">.</span>
+            </a>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Animated Ambient Blobs & Canvas Particles -->
+    <div class="background-effects">
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+        <div class="ambient-blobs">
+            <div class="blob blob-purple"></div>
+            <div class="blob blob-pink"></div>
+            <div class="blob blob-turquoise"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container hero-grid">
+                <!-- Hero Left: Content -->
+                <div class="hero-content hero-entrance">
+                    <span class="hero-badge">Available for Freelance</span>
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="text-gradient">Swayam Omar</span>
+                    </h1>
+                    <h2 class="hero-subtitle">Web Developer & B.Tech CSE Student</h2>
+                    <p class="hero-typing-wrap">
+                        <span class="typing-text" id="typingText"></span><span class="typing-cursor">|</span>
+                    </p>
+                    <p class="hero-description">
+                        Building high-performance MERN stack web applications and interactive digital experiences. Passionate about turning complex logic into sleek, accessible, and futuristic software.
+                    </p>
+                    <div class="hero-cta-btns">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Hire Me</a>
+                    </div>
+                </div>
+                <!-- Hero Right: Avatar/Illustration -->
+                <div class="hero-visual hero-entrance">
+                    <div class="profile-glow-circle">
+                        <div class="profile-inner-frame">
+                            <img src="assets/profile.jpg" alt="Swayam Omar - Photo" class="profile-image">
+                            <!-- Cyber Tech SVG Elements overlaying visual border -->
+                            <svg class="cyber-svg-overlay" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="48" class="cyber-ring-outer" stroke-dasharray="10 5 15 10" />
+                                <circle cx="50" cy="50" r="44" class="cyber-ring-inner" stroke-dasharray="20 15 5 10" />
+                                <line x1="10" y1="10" x2="25" y2="10" stroke="var(--accent-blue)" stroke-width="0.75" />
+                                <line x1="10" y1="10" x2="10" y2="25" stroke="var(--accent-blue)" stroke-width="0.75" />
+                                <line x1="90" y1="90" x2="75" y2="90" stroke="var(--accent-pink)" stroke-width="0.75" />
+                                <line x1="90" y1="90" x2="90" y2="75" stroke="var(--accent-pink)" stroke-width="0.75" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="about-section reveal-item">
+            <div class="container max-width-700">
+                <div class="section-header text-center">
+                    <span class="section-tag">01. Initialize</span>
+                    <h2 class="section-title">About Me</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="about-body">
+                    <p>
+                        I am a Computer Science Engineering (B.Tech) student from India, deeply passionate about software engineering, web technologies, and visual design. My programming journey started with solving logic puzzles and has evolved into building production-ready, full-stack web applications.
+                    </p>
+                    <p>
+                        As a MERN developer and active freelancer, I specialize in crafting clean, pixel-perfect, responsive layouts powered by scalable backend architectures. I enjoy implementing custom micro-interactions, API integrations, and robust database models.
+                    </p>
+                    <p>
+                        When I'm not writing code or studying core computer science concepts (like DSA, OS, and DBMS), I'm exploring modern design aesthetics, experimenting with system optimization, or collaborating on open-source projects.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section reveal-item">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">02. Stack</span>
+                    <h2 class="section-title">My Tech Stack</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="skills-grid">
+                    <!-- Card 1: Frontend -->
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap">
+                            <!-- Frontend SVG Icon -->
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="var(--accent-blue)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <h3 class="skill-group-title">Frontend</h3>
+                        <ul class="skill-list">
+                            <li>HTML5 / CSS3 / SCSS</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>React.js / Redux Toolkit</li>
+                            <li>Next.js</li>
+                            <li>Tailwind CSS / Bootstrap</li>
+                            <li>GSAP & Framer Motion</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2: Backend -->
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap">
+                            <!-- Backend SVG Icon -->
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="var(--accent-purple)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                                <line x1="20" y1="6" x2="20.01" y2="6"></line>
+                                <line x1="20" y1="18" x2="20.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <h3 class="skill-group-title">Backend</h3>
+                        <ul class="skill-list">
+                            <li>Node.js</li>
+                            <li>Express.js</li>
+                            <li>REST APIs</li>
+                            <li>GraphQL APIs</li>
+                            <li>Socket.io (Realtime)</li>
+                            <li>JWT Authentication</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Database -->
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap">
+                            <!-- Database SVG Icon -->
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="var(--accent-pink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                                <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+                            </svg>
+                        </div>
+                        <h3 class="skill-group-title">Database</h3>
+                        <ul class="skill-list">
+                            <li>MongoDB</li>
+                            <li>PostgreSQL</li>
+                            <li>MySQL</li>
+                            <li>Redis (Caching)</li>
+                            <li>Mongoose ORM</li>
+                            <li>Prisma ORM</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 4: DevOps & Cloud -->
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap">
+                            <!-- DevOps SVG Icon -->
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="var(--accent-turquoise)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="22" y1="12" x2="18" y2="12"></line>
+                                <line x1="6" y1="12" x2="2" y2="12"></line>
+                                <line x1="12" y1="6" x2="12" y2="2"></line>
+                                <line x1="12" y1="22" x2="12" y2="18"></line>
+                            </svg>
+                        </div>
+                        <h3 class="skill-group-title">DevOps & Cloud</h3>
+                        <ul class="skill-list">
+                            <li>Docker</li>
+                            <li>Git / GitHub Actions</li>
+                            <li>AWS (S3, EC2)</li>
+                            <li>Vercel / Netlify / Heroku</li>
+                            <li>Render / DigitalOcean</li>
+                            <li>CI/CD Workflows</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 5: Languages -->
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap">
+                            <!-- Languages SVG Icon -->
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="var(--accent-red)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="skill-group-title">Languages</h3>
+                        <ul class="skill-list">
+                            <li>JavaScript (JS)</li>
+                            <li>TypeScript (TS)</li>
+                            <li>Java (OOP & DSA)</li>
+                            <li>C++ / C</li>
+                            <li>Python (Basics)</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 6: Developer Tools -->
+                    <div class="skill-card">
+                        <div class="skill-icon-wrap">
+                            <!-- Tools SVG Icon -->
+                            <svg viewBox="0 0 24 24" width="32" height="32" stroke="var(--accent-blue)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="skill-group-title">Dev Tools</h3>
+                        <ul class="skill-list">
+                            <li>VS Code</li>
+                            <li>Postman / Insomnia</li>
+                            <li>Git / GitHub</li>
+                            <li>Vite / Webpack</li>
+                            <li>Chrome DevTools</li>
+                            <li>Figma (UI Design)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section reveal-item">
+            <div class="container">
+                <div class="section-header text-center" style="position: relative;">
+                    <span class="section-tag">03. Showcase</span>
+                    <h2 class="section-title">Featured Projects</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <!-- Floating Admin Trigger: Add Project Button (Shown in admin mode only) -->
+                <button class="btn btn-primary" id="addProjectBtn" style="display: none; margin: -0.5rem auto 2.5rem; gap: 0.5rem; border-radius: 0.8rem; padding: 0.6rem 1.4rem;">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <span>Add Project</span>
+                </button>
+
+                <!-- Projects Grid (Dynamically rendered by projects.js and main.js) -->
+                <div class="projects-grid" id="projectsGrid"></div>
+            </div>
+        </section>
+
+        <!-- Freelancing & Services Section -->
+        <section id="services" class="services-section reveal-item">
+            <div class="container services-grid">
+                <!-- Services Left: Intro & CTA -->
+                <div class="services-intro">
+                    <span class="section-tag">04. Solutions</span>
+                    <h2 class="section-title">Freelancing & Services</h2>
+                    <p class="services-text">
+                        I build responsive, high-performance web applications tailored to your business goals. From single-page landing sites with immersive styling to multi-user dashboards handling real-time data flow, I write robust code and follow design systems that elevate your digital brand.
+                    </p>
+                    <div class="services-cta">
+                        <a href="#contact" class="btn btn-gradient-cta">Let's Work Together</a>
+                    </div>
+                </div>
+                <!-- Services Right: List of Cards -->
+                <div class="services-list">
+                    <!-- Service 1 -->
+                    <div class="service-item-card">
+                        <div class="service-item-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="var(--accent-blue)" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <div class="service-item-body">
+                            <h4>Responsive Frontend Engineering</h4>
+                            <p>Pixel-perfect translations of layouts from Figma into clean, responsive, semantic HTML, CSS, and modern React/Next architectures.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-item-card">
+                        <div class="service-item-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="var(--accent-pink)" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        </div>
+                        <div class="service-item-body">
+                            <h4>Full-Stack Applications</h4>
+                            <p>Developing secure database models, REST APIs, user sessions, and integrations under Node.js, Express, and databases like MongoDB/Postgres.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-item-card">
+                        <div class="service-item-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="var(--accent-turquoise)" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </div>
+                        <div class="service-item-body">
+                            <h4>Optimization & Redeployment</h4>
+                            <p>Auditing site speed, refactoring structure to follow SEO parameters, ensuring high accessibility compliance, and deploying onto host configurations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="education-section reveal-item">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag">05. Timeline</span>
+                    <h2 class="section-title">Education</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content-card">
+                            <span class="timeline-year">2023 - 2027 (Expected)</span>
+                            <h3>B.Tech in Computer Science and Engineering</h3>
+                            <p class="timeline-institute">Indian University / Institute</p>
+                            <p class="timeline-desc">Specializing in core software paradigms. Active studies cover Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems, Operating Systems, and Advanced Web Engineering.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content-card">
+                            <span class="timeline-year">2021 - 2022</span>
+                            <h3>Senior Secondary Education (Class XII)</h3>
+                            <p class="timeline-institute">School Name / CBSE Board</p>
+                            <p class="timeline-desc">Focused on Science stream (Physics, Chemistry, Mathematics, Computer Science). Built a strong analytical foundation and was introduced to object-oriented programming concepts.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content-card">
+                            <span class="timeline-year">2019 - 2020</span>
+                            <h3>Secondary Education (Class X)</h3>
+                            <p class="timeline-institute">School Name / CBSE Board</p>
+                            <p class="timeline-desc">Core syllabus focusing on science, mathematics, and basic technology foundations. Graduated with outstanding marks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section reveal-item">
+            <div class="container max-width-600">
+                <div class="section-header text-center">
+                    <span class="section-tag">06. Connect</span>
+                    <h2 class="section-title">Get In Touch</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <!-- Contact Form Wrapper -->
+                <div class="contact-form-wrapper" id="formWrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="formName">Your Name</label>
+                            <input type="text" id="formName" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formEmail">Your Email</label>
+                            <input type="email" id="formEmail" name="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formMessage">Your Message</label>
+                            <textarea id="formMessage" name="message" rows="5" placeholder="Let's build something awesome..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-submit" id="submitBtn">
+                            <span>Send Message</span>
+                            <svg class="send-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Alternative Contact Info -->
+                <div class="alternative-contacts text-center">
+                    <p>Or reach out directly via:</p>
+                    <div class="contact-links">
+                        <a href="mailto:swayamomar@gmail.com" class="contact-link-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="var(--accent-blue)" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            swayamomar@gmail.com
+                        </a>
+                        <a href="tel:9580125697" class="contact-link-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="var(--accent-blue)" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            +91-9580125697
+                        </a>
+                        <a href="https://wa.me/919580125697" target="_blank" class="contact-link-item">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="var(--accent-turquoise)" stroke-width="2" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                            WhatsApp Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-wrapper">
+        <div class="container footer-container">
+            <p class="footer-copy">&copy; 2026 Swayam Omar. All Rights Reserved.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/Swayam2708" target="_blank" aria-label="GitHub">GitHub</a>
+                <a href="https://linkedin.com/in/swayamomar" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Projects Data Array Script -->
+    <script src="js/projects.js"></script>
+    <!-- Custom Script -->
+    <script src="js/main.js"></script>
+</body>
+</html>
