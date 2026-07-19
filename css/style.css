@@ -38,7 +38,7 @@
 }
 
 html {
-    font-size: 16px;
+    font-size: 12px;
     scroll-behavior: smooth;
 }
 
@@ -359,7 +359,7 @@ body.admin-mode-active .card-admin-actions {
    LAYOUT & CONTAINER STYLES
    ========================================================================== */
 .container {
-    max-width: 1200px;
+    max-width: 1060px;
     margin: 0 auto;
     padding: 0 1.5rem;
     position: relative;
@@ -383,7 +383,7 @@ body.admin-mode-active .card-admin-actions {
 }
 
 section {
-    padding: 4rem 0; /* Reduced spacing from 6.5rem */
+    padding: 3rem 0; /* Reduced spacing from 4rem */
     position: relative;
 }
 
@@ -1104,8 +1104,8 @@ p {
 
 @media (max-width: 991px) {
     .profile-glow-circle {
-        width: 280px;
-        height: 280px;
+        width: 220px;
+        height: 220px;
     }
 }
 
@@ -1115,8 +1115,8 @@ p {
     }
     
     .profile-glow-circle {
-        width: 230px;
-        height: 230px;
+        width: 180px;
+        height: 180px;
     }
 }
 
