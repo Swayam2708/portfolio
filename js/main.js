@@ -688,8 +688,8 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             submitText.textContent = "Transmitting...";
             
-            // Forward actual email to swayamomar@gmail.com via FormSubmit AJAX API
-            fetch("https://formsubmit.co/ajax/swayamomar@gmail.com", {
+            // Forward actual email to swayamomar123@gmail.com via FormSubmit AJAX API
+            fetch("https://formsubmit.co/ajax/swayamomar123@gmail.com", {
                 method: "POST",
                 headers: { 
                     "Content-Type": "application/json",
@@ -720,7 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </svg>
                         </div>
                         <h3>Transmission Success!</h3>
-                        <p>Thank you for reaching out, Swayam. Your message has been encrypted and successfully transmitted to swayamomar@gmail.com. I will get back to you shortly.</p>
+                        <p>Thank you for reaching out, Swayam. Your message has been encrypted and successfully transmitted to swayamomar123@gmail.com. I will get back to you shortly.</p>
                     </div>
                 `;
             }
