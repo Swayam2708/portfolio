@@ -626,7 +626,7 @@ p {
     padding: 0.9rem 1.5rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
     .navbar-container {
         padding: 1rem;
     }
@@ -722,7 +722,7 @@ p {
     transition: var(--transition-standard);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
     .menu-toggle {
         display: flex;
     }

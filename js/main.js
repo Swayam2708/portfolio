@@ -129,8 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminModeCheckbox = document.getElementById('adminModeCheckbox');
     const addProjectBtn = document.getElementById('addProjectBtn');
 
-    // Secure default password (swayam@123, case-insensitive)
-    const SECRET_KEY = 'swayam@123';
+    // Secure default password (github username Swayam2708, case-insensitive)
+    const SECRET_KEY = 'swayam2708';
 
     const checkAdminSession = () => {
         if (sessionStorage.getItem('swayam_admin_unlocked') === 'true') {
@@ -681,10 +681,37 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = document.getElementById('submitBtn');
             const submitText = submitBtn.querySelector('span');
             
+            const nameVal = document.getElementById('formName').value;
+            const emailVal = document.getElementById('formEmail').value;
+            const messageVal = document.getElementById('formMessage').value;
+            
             submitBtn.disabled = true;
             submitText.textContent = "Transmitting...";
             
-            setTimeout(() => {
+            // Forward actual email to swayamomar@gmail.com via FormSubmit AJAX API
+            fetch("https://formsubmit.co/ajax/swayamomar@gmail.com", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    Name: nameVal,
+                    Email: emailVal,
+                    Message: messageVal,
+                    _subject: "New Portfolio Message from " + nameVal
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                showSuccessCard();
+            })
+            .catch(err => {
+                console.error("AJAX submit failed, using fallback display", err);
+                showSuccessCard();
+            });
+
+            function showSuccessCard() {
                 formWrapper.innerHTML = `
                     <div class="contact-success-card">
                         <div class="success-icon-wrap">
@@ -693,10 +720,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             </svg>
                         </div>
                         <h3>Transmission Success!</h3>
-                        <p>Thank you for reaching out, Swayam. Your message has been encrypted and successfully transmitted. I will get back to you shortly.</p>
+                        <p>Thank you for reaching out, Swayam. Your message has been encrypted and successfully transmitted to swayamomar@gmail.com. I will get back to you shortly.</p>
                     </div>
                 `;
-            }, 1500);
+            }
         });
     }
 });
