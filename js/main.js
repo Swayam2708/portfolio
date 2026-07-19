@@ -22,6 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     loadProjectsData();
 
+    // Load dynamic About Me & Skills from localStorage if edited
+    const aboutBody = document.querySelector('.about-body');
+    const skillsGrid = document.querySelector('.skills-grid');
+
+    if (aboutBody) {
+        const storedAbout = localStorage.getItem('swayam_portfolio_about');
+        if (storedAbout) {
+            aboutBody.innerHTML = storedAbout;
+        }
+    }
+
+    if (skillsGrid) {
+        const storedSkills = localStorage.getItem('swayam_portfolio_skills');
+        if (storedSkills) {
+            skillsGrid.innerHTML = storedSkills;
+        }
+    }
+
     // ==========================================================================
     // MOBILE NAVIGATION DRAWER
     // ==========================================================================
@@ -168,12 +186,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (adminModeCheckbox) {
         adminModeCheckbox.addEventListener('change', () => {
             const isChecked = adminModeCheckbox.checked;
+            
+            // Toggle editability of About Me and Tech Stack
+            if (aboutBody) {
+                aboutBody.contentEditable = isChecked;
+            }
+            if (skillsGrid) {
+                const skillTitles = skillsGrid.querySelectorAll('.skill-group-title');
+                const skillLists = skillsGrid.querySelectorAll('.skill-list');
+                
+                skillTitles.forEach(t => t.contentEditable = isChecked);
+                skillLists.forEach(l => l.contentEditable = isChecked);
+            }
+
             if (isChecked) {
                 document.body.classList.add('admin-mode-active');
                 addProjectBtn.style.display = 'inline-flex';
             } else {
                 document.body.classList.remove('admin-mode-active');
                 addProjectBtn.style.display = 'none';
+                
+                // Save edited content to localStorage when exiting admin mode
+                if (aboutBody) {
+                    localStorage.setItem('swayam_portfolio_about', aboutBody.innerHTML);
+                }
+                if (skillsGrid) {
+                    localStorage.setItem('swayam_portfolio_skills', skillsGrid.innerHTML);
+                }
             }
             renderProjectsGrid(); // force re-render with buttons
         });
@@ -418,9 +457,12 @@ document.addEventListener('DOMContentLoaded', () => {
         resetProjectsBtn.addEventListener('click', () => {
             if (confirm("Reset will wipe all browser local modifications and restore the projects default configuration file. Proceed?")) {
                 localStorage.removeItem(STORAGE_KEY);
+                localStorage.removeItem('swayam_portfolio_about');
+                localStorage.removeItem('swayam_portfolio_skills');
                 loadProjectsData();
                 renderProjectsGrid();
                 alert("Successfully restored to projects.js defaults.");
+                window.location.reload();
             }
         });
     }
