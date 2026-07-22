@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     };
 
+    let customizerMouseDownTarget = null;
     if (customizerToggle && customizerModal && customizerClose) {
         customizerToggle.addEventListener('click', () => {
             customizerModal.classList.add('open');
@@ -155,12 +156,17 @@ document.addEventListener('DOMContentLoaded', () => {
             adminPasswordInput.value = '';
         });
 
-        customizerModal.addEventListener('click', (e) => {
-            if (e.target === customizerModal) {
+        customizerModal.addEventListener('mousedown', (e) => {
+            customizerMouseDownTarget = e.target;
+        });
+
+        customizerModal.addEventListener('mouseup', (e) => {
+            if (e.target === customizerModal && customizerMouseDownTarget === customizerModal) {
                 customizerModal.classList.remove('open');
                 authErrorMsg.style.display = 'none';
                 adminPasswordInput.value = '';
             }
+            customizerMouseDownTarget = null;
         });
     }
 
@@ -369,18 +375,30 @@ document.addEventListener('DOMContentLoaded', () => {
         addProjectBtn.addEventListener('click', () => openProjectEditor(-1));
     }
 
+    let projectEditMouseDownTarget = null;
     if (projectEditClose && projectEditModal) {
         projectEditClose.addEventListener('click', () => {
             projectEditModal.classList.remove('open');
         });
-        projectEditModal.addEventListener('click', (e) => {
-            if (e.target === projectEditModal) {
+        projectEditModal.addEventListener('mousedown', (e) => {
+            projectEditMouseDownTarget = e.target;
+        });
+        projectEditModal.addEventListener('mouseup', (e) => {
+            if (e.target === projectEditModal && projectEditMouseDownTarget === projectEditModal) {
                 projectEditModal.classList.remove('open');
             }
+            projectEditMouseDownTarget = null;
         });
     }
 
     if (projectEditForm) {
+        // Prevent accidental form submission when pressing Enter in inputs
+        projectEditForm.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
+                e.preventDefault();
+            }
+        });
+
         projectEditForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -426,14 +444,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    let exportMouseDownTarget = null;
     if (exportClose && exportModal) {
         exportClose.addEventListener('click', () => {
             exportModal.classList.remove('open');
         });
-        exportModal.addEventListener('click', (e) => {
-            if (e.target === exportModal) {
+        exportModal.addEventListener('mousedown', (e) => {
+            exportMouseDownTarget = e.target;
+        });
+        exportModal.addEventListener('mouseup', (e) => {
+            if (e.target === exportModal && exportMouseDownTarget === exportModal) {
                 exportModal.classList.remove('open');
             }
+            exportMouseDownTarget = null;
         });
     }
 
