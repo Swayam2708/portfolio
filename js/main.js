@@ -604,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.vx = (Math.random() - 0.5) * 0.7;
             this.vy = (Math.random() - 0.5) * 0.7;
             this.radius = Math.random() * 2 + 1.2;
-            const colors = ['#6366F1', '#8B5CF6', '#14B8A6', '#EC4899'];
+            const colors = ['#313645', '#475569', '#6366F1'];
             this.color = colors[Math.floor(Math.random() * colors.length)];
         }
 
@@ -664,7 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (dist < connectionDistance) {
                     let opacity = 1 - (dist / connectionDistance);
-                    ctx.strokeStyle = `rgba(99, 102, 241, ${opacity * 0.12})`;
+                    ctx.strokeStyle = `rgba(99, 102, 241, ${opacity * 0.05})`;
                     ctx.lineWidth = 0.85;
                     ctx.beginPath();
                     ctx.moveTo(particles[a].x, particles[a].y);
