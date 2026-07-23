@@ -14,7 +14,7 @@ const projectsData = [
     },
     {
         "title": "Real Project Title 2",
-        "description": "Replace this text with a 2-3 line description of your real project. Describe what it does, what problem it solves, and key features.",
+        "description": "bh h buhb sujhb  uhbu\n.",
         "techStack": [
             "Next.js",
             "TypeScript",
