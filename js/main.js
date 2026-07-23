@@ -188,6 +188,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Custom Resume PDF Upload Logic
+    const resumeInput = document.getElementById('adminResumeUpload');
+    const resumeStatus = document.getElementById('adminResumeStatus');
+    const downloadResumeBtn = document.getElementById('downloadResumeBtn');
+
+    if (resumeInput && resumeStatus) {
+        // Initialize status
+        const storedResume = localStorage.getItem('swayam_portfolio_resume');
+        if (storedResume) {
+            resumeStatus.textContent = 'Custom Resume Active ✓';
+            resumeStatus.style.color = 'var(--accent-turquoise)';
+        }
+
+        resumeInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            if (file.type !== 'application/pdf') {
+                alert('Please upload a PDF file only.');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const base64String = evt.target.result;
+                try {
+                    localStorage.setItem('swayam_portfolio_resume', base64String);
+                    resumeStatus.textContent = file.name + ' (Uploaded!)';
+                    resumeStatus.style.color = 'var(--accent-turquoise)';
+                    alert('Resume uploaded successfully! The Download Resume button will now download this file.');
+                } catch (err) {
+                    console.error(err);
+                    alert('File too large to store in browser localStorage. Please compress it under 2MB.');
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    if (downloadResumeBtn) {
+        downloadResumeBtn.addEventListener('click', (e) => {
+            const customResume = localStorage.getItem('swayam_portfolio_resume');
+            if (customResume) {
+                e.preventDefault();
+                // Base64 download trigger
+                const link = document.createElement('a');
+                link.href = customResume;
+                link.download = 'Swayam_Omar_Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        });
+    }
+
     // Toggle Visual Edit Mode
     if (adminModeCheckbox) {
         adminModeCheckbox.addEventListener('change', () => {
